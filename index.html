@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetWave</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+</head>
+<body>
+    <!-- <img src="https://i2.wp.com/ihelpbr.com/wp-content/uploads/2019/09/GarageBand-iOS.jpg?resize=768%2C530&ssl=1" alt=""> -->
+    <div id="app">
+        <div class="header">
+            <div class="right">
+                <button>Minhas Músicas</button>
+            </div>
+            <div class="center">
+                <button @click="play">
+                    <i 
+                    class="fas fa-play"
+                    v-if="!playing"></i>
+                    <i 
+                    class="fas fa-pause"
+                    v-else=""></i>
+                </button>
+            </div>
+            <div class="liner">
+                <div 
+                v-for="i in fakePointer"
+                class="line"
+                @click="tocando = i">
+                <span>
+                    {{ i }}
+                </span>
+                </div>
+            </div>
+        </div>
+        <div class="centerb">       
+            <div class="music">
+                <div class="line"
+                v-for="audio in audios">
+                <div class="fakePointer" 
+                @click="putAudio(audio, i)"
+                @dblclick="removeAudio(audio, i)"
+                v-for="i in fakePointer"
+                :class="{'ativo': myMusic.find(e => e.audio == audio && e.indice == i), 'tocando' : tocando == i}"></div>
+                    <span>
+                        {{ audio }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>
